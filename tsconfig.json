@@ -6,6 +6,8 @@
     "jsx": "preserve",
     "jsxFactory": "h",
     "importHelpers": true,
+    "declaration": true,
+    "declarationDir": "dist",
     "moduleResolution": "node",
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,

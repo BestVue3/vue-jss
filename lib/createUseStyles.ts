@@ -5,7 +5,6 @@ import {
   Ref,
   ComputedRef,
   watchEffect,
-  WatchSource,
   isRef,
   onBeforeUnmount,
 } from 'vue'
@@ -40,7 +39,7 @@ const createUseStyles = (
         : useDefaultTheme
       : useDefaultTheme
 
-  return function useStyles(data: WatchSource | Ref) {
+  return function useStyles(data?: any) {
     const theme = useTheme()
 
     const context = injectJssContext()
@@ -56,7 +55,6 @@ const createUseStyles = (
     watch(
       [context, theme],
       ([c, t], [pc, pt]) => {
-        // console.log(pt, pc)
         const sheetInstance = createStyleSheet({
           context: context.value,
           styles,
@@ -67,7 +65,6 @@ const createUseStyles = (
         })
 
         if (sheet.value && sheetInstance !== sheet.value) {
-          // console.log('----------------------->', pt)
           unmanageSheet({
             index,
             context: pc as any,
@@ -95,19 +92,6 @@ const createUseStyles = (
           })
         }
 
-        // unmanageSheetRef.value = () => {
-        //   unmanageSheet({
-        //     index,
-        //     context: pc,
-        //     sheet: sheet.value,
-        //     theme: pt,
-        //   })
-
-        //   if (sheet.value && dynamicRules.value) {
-        //     removeDynamicRules(sheet.value, dynamicRules.value)
-        //   }
-        // }
-
         sheet.value = sheetInstance
         dynamicRules.value = dys
       },
@@ -130,21 +114,6 @@ const createUseStyles = (
         : {}
     })
 
-    // watch(sheet, (oldSheet, newSheet) => {
-    //   if (oldSheet) {
-    //     unmanageSheet({
-    //       index,
-    //       context: context.value,
-    //       sheet: oldSheet.value,
-    //       theme: theme.value,
-    //     })
-    //   }
-
-    //   if (sheet.value && dynamicRules.value) {
-    //     removeDynamicRules(sheet.value, dynamicRules.value)
-    //   }
-    // })
-
     onBeforeUnmount(() => {
       if (sheet) {
         unmanageSheet({
@@ -160,7 +129,6 @@ const createUseStyles = (
       }
     })
 
-    // return [newSheet, newDynamicRules]
     return classes
   }
 }
