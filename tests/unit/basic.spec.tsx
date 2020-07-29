@@ -1,5 +1,5 @@
 // import { mount } from '@vue/test-utils'
-import createBaseTests from '../../test-utils/createBaseTests'
+import createBaseTests from '../utils/createBaseTests'
 
 import createUseStyles from '../../lib/createUseStyles'
 

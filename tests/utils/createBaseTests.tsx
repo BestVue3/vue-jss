@@ -3,7 +3,7 @@ import { mount } from '@vue/test-utils'
 import { spy } from 'sinon'
 import { stripIndent } from 'common-tags'
 
-import { JssProvider, SheetsRegistry } from '../lib'
+import { JssProvider, SheetsRegistry } from '../../lib'
 
 export default ({ createStyledComponent }: any) => {
   it('should reuse one static sheet for many elements and detach sheet', () => {
@@ -93,15 +93,14 @@ export default ({ createStyledComponent }: any) => {
     })
 
     it('should provide a default index in ascending order', () => {
-
       const Demo = () => (
-          <JssProvider registry={registry}>
-            <ComponentA />
-            <ComponentB />
-          </JssProvider>
-        )
-      
-        const wrapper = mount(Demo)
+        <JssProvider registry={registry}>
+          <ComponentA />
+          <ComponentB />
+        </JssProvider>
+      )
+
+      const wrapper = mount(Demo)
 
       expect(registry.registry.length).toEqual(2)
       const indexA = registry.registry[0].options.index
@@ -111,7 +110,6 @@ export default ({ createStyledComponent }: any) => {
     })
 
     it('should not be affected by rendering order', () => {
-
       const Demo = () => {
         return (
           <JssProvider registry={registry}>
@@ -151,15 +149,14 @@ export default ({ createStyledComponent }: any) => {
     })
 
     afterEach(() => {
-      (console as any).warn.restore()
+      ;(console as any).warn.restore()
     })
 
     it('warn if themed styles dont use theme', () => {
       const MyComponent = createStyledComponent(() => ({}), { name: 'Comp' })
 
-      
-      const Demo = () => (<MyComponent theme={{}} />)
-      
+      const Demo = () => <MyComponent theme={{}} />
+
       mount(Demo)
 
       expect(
@@ -171,11 +168,10 @@ export default ({ createStyledComponent }: any) => {
 
     it('should not warn if themed styles _do use_ theme', () => {
       const MyComponent = createStyledComponent((theme: any) => ({})) // eslint-disable-line no-unused-vars
-      
-      const Demo = () => (<MyComponent theme={{}} />)
+
+      const Demo = () => <MyComponent theme={{}} />
 
       mount(Demo)
-      
 
       expect((console as any).warn.called).toBe(false)
     })
@@ -195,13 +191,13 @@ export default ({ createStyledComponent }: any) => {
         },
         { name },
       )
-      
+
       const Demo = () => (
         <JssProvider generateId={generateId}>
           <MyComponent />
         </JssProvider>
       )
-    
+
       mount(Demo)
     }
 

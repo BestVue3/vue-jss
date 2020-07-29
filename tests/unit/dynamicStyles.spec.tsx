@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 
 import { createUseStyles } from '../../lib'
-import createDynamicStylesTests from '../../test-utils/createDynamicStylesTests'
+import createDynamicStylesTests from '../utils/createDynamicStylesTests'
 
 describe('Vue-JSS: dynamic styles', () => {
   describe('using createUseStyles', () => {

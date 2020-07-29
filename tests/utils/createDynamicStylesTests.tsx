@@ -7,8 +7,8 @@ import { stripIndent } from 'common-tags'
 
 import { mount } from '@vue/test-utils'
 
-import { JssProvider, SheetsRegistry } from '../lib'
-import { defineComponent, nextTick, h, reactive, Fragment } from 'vue'
+import { JssProvider, SheetsRegistry } from '../../lib'
+import { nextTick, h, Fragment } from 'vue'
 
 const createGenerateId = () => {
   let counter = 0
@@ -135,7 +135,7 @@ export default ({ createStyledComponent }: any) => {
       `)
     })
 
-    it('should update dynamic values', (done) => {
+    it('should update dynamic values', done => {
       const generateId = createGenerateId()
       const Container = (props: any) => {
         // return <JssProvider registry={registry} generateId={generateId}>
@@ -203,7 +203,7 @@ export default ({ createStyledComponent }: any) => {
       })
     })
 
-    it('should unset values when null is returned from fn value', (done) => {
+    it('should unset values when null is returned from fn value', done => {
       const generateId = createGenerateId()
 
       MyComponent = createStyledComponent({

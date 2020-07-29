@@ -1,7 +1,3 @@
-// module.exports = {
-//   preset: '@vue/cli-plugin-unit-jest/presets/typescript-and-babel',
-// }
-
 module.exports = {
   moduleFileExtensions: [
     'js',
@@ -25,7 +21,7 @@ module.exports = {
   },
   testEnvironment: 'jest-environment-jsdom-fifteen',
   // serializer for snapshots
-  snapshotSerializers: ['jest-serializer-vue'],
+  // snapshotSerializers: ['jest-serializer-vue'],
   testMatch: ['**/tests/unit/**/*.spec.[jt]s?(x)', '**/__tests__/*.[jt]s?(x)'],
   // https://github.com/facebook/jest/issues/6766
   testURL: 'http://localhost/',
