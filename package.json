@@ -12,6 +12,13 @@
   "publishConfig": {
     "registry": "https://registry.npmjs.org/"
   },
+  "keywords": [
+    "vue3",
+    "jss",
+    "vue",
+    "css in js",
+    "useStyles"
+  ],
   "author": "Jokcy",
   "license": "MIT",
   "devDependencies": {
@@ -47,7 +54,8 @@
     "webpack-dev-server": "^3.11.0"
   },
   "scripts": {
-    "test": "yarn jest",
+    "test": "jest",
+    "test:cov": "jest --coverage",
     "dev": "webpack-dev-server --config webpack.config.js",
     "release": "np patch"
   },

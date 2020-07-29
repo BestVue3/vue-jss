@@ -1,5 +1,11 @@
 # vue-jss
 
+<p>
+  <a href="https://www.npmjs.com/package/vue"><img src="https://img.shields.io/npm/v/vue-jss.svg?sanitize=true" alt="Version"></a>
+  <a href="https://www.npmjs.com/package/vue"><img src="https://img.shields.io/npm/l/vue-jss.svg?sanitize=true" alt="License"></a>
+  <a href="https://www.npmjs.com/package/vue"><img src="https://img.shields.io/bundlephobia/minzip/vue-jss" alt="Size"></a>
+</p>
+
 vue-jss is fully tested css in js library for vue based on [jss](https://cssinjs.org/).
 
 Thanks to the jss team, we can easily implement css in js in vue. Css in js is more powerful in:
