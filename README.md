@@ -5,6 +5,7 @@
   <a href="https://www.npmjs.com/package/vue"><img src="https://img.shields.io/npm/l/vue-jss.svg?sanitize=true" alt="License"></a>
   <a href="https://www.npmjs.com/package/vue"><img src="https://img.shields.io/bundlephobia/minzip/vue-jss" alt="Size"></a>
   <a href="https://codecov.io/gh/pure-vue/vue-jss"><img src="https://img.shields.io/codecov/c/gh/pure-vue/vue-jss" alt="Coverage"></a>
+  <a href="https://www.npmjs.com/package/vue"><img src="https://david-dm.org/pure-vue/vue-jss.svg" alt="Dependencies"></a>
 </p>
 
 vue-jss is fully tested css in js library for vue based on [jss](https://cssinjs.org/).
