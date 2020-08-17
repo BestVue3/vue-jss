@@ -6,6 +6,7 @@ import {
   Ref,
   ref,
   PropType,
+  ComputedRef,
 } from 'vue'
 import warning from 'tiny-warning'
 import isObject from './utils/is-object'
@@ -16,10 +17,16 @@ type ThemeOrThemeFunction<Theme> = Theme | ThemeFunction<Theme>
 
 const defaultTheme = {}
 
+export interface Theming<Theme> {
+  ThemeProvider: any
+  useTheme: () => Ref<Theme>
+  contextKey: string | Symbol
+}
+
 const createTheming = function createTheming<Theme>(
   contextKey: Symbol | string,
   defaultTheme: Theme,
-) {
+): Theming<Theme> {
   const ThemeProvider = defineComponent({
     props: {
       theme: {

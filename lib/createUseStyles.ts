@@ -9,7 +9,7 @@ import {
   onBeforeUnmount,
 } from 'vue'
 
-import { Classes } from 'jss'
+import { Classes, GenerateId, Styles } from 'jss'
 
 import { injectJssContext } from './JssContext'
 
@@ -21,15 +21,52 @@ import {
 } from './utils/sheets'
 
 import getSheetIndex from './utils/getSheetIndex'
-import { HookOptions, Styles, DynamicRules } from './types'
+import { DynamicRules } from './types'
 import { manageSheet, unmanageSheet } from './utils/managers'
 import getSheetClasses from './utils/getSheetClasses'
-import { useTheme as useDefaultTheme } from './theming'
+import { useTheme as useDefaultTheme, Theming } from './theming'
 
-const createUseStyles = (
-  styles: Styles<any>,
-  options: HookOptions<any> = {},
-) => {
+// interface Theming<Theme> {
+//   context: React.Context<Theme>
+//   withTheme: WithThemeFactory<Theme>
+//   ThemeProvider: ThemeProviderFactory<Theme>
+//   useTheme: UseThemeFactory<Theme>
+// }
+
+export interface StyleSheetFactoryOptions {
+  media?: string
+  meta?: string
+  index?: number
+  link?: boolean
+  element?: HTMLStyleElement
+  generateId?: GenerateId
+  classNamePrefix?: string
+}
+
+interface BaseOptions<Theme = DefaultTheme> extends StyleSheetFactoryOptions {
+  index?: number
+  theming?: Theming<Theme>
+}
+
+interface CreateUseStylesOptions<Theme = DefaultTheme>
+  extends BaseOptions<Theme> {
+  name?: string
+}
+
+export interface DefaultTheme {}
+
+// export function createUseStyles<
+//   Theme = DefaultTheme,
+//   C extends string = string
+// >(
+//   styles: Styles<C> | ((theme: Theme) => Styles<C>),
+//   options?: CreateUseStylesOptions<Theme>,
+// ): (data?: unknown) => Classes<C>
+
+function createUseStyles<Theme = DefaultTheme, C extends string = string>(
+  styles: Styles<C> | ((theme: Theme) => Styles<C>),
+  options: CreateUseStylesOptions<Theme> = {},
+): (data?: unknown) => ComputedRef<Classes<C>> {
   const { index = getSheetIndex(), theming, name, ...sheetOptions } = options
 
   const useTheme =
@@ -57,9 +94,9 @@ const createUseStyles = (
       ([c, t], [pc, pt]) => {
         const sheetInstance = createStyleSheet({
           context: context.value,
-          styles,
+          styles: styles as any,
           name,
-          theme: theme.value,
+          theme: theme.value as any,
           index,
           sheetOptions,
         })

@@ -1,6 +1,4 @@
-// @flow
 import type {
-  StyleSheetFactoryOptions,
   Jss,
   SheetsRegistry,
   SheetsManager,
@@ -13,18 +11,6 @@ import type {
 
 export interface Managers {[key: number]: SheetsManager}
 
-export type HookOptions<Theme> = StyleSheetFactoryOptions & {
-  index?: number,
-  name?: string,
-  theming?: any
-}
-
-export type HOCOptions<Theme> = StyleSheetFactoryOptions & {
-  index?: number,
-  // theming?: Theming<Theme>,
-  injectTheme?: boolean
-}
-
 export interface Context {
   jss?: Jss,
   registry?: SheetsRegistry,
@@ -34,12 +20,6 @@ export interface Context {
   disableStylesGeneration?: boolean,
   media?: string,
   generateId?: GenerateId
-}
-
-export type HOCProps<Theme, Props> = Props & {
-  theme: Theme,
-  jssContext: Context,
-  innerRef: any
 }
 
 export type Classes = {[key: string]: string}
