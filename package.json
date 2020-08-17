@@ -60,7 +60,9 @@
     "test": "jest",
     "test:cov": "jest --coverage",
     "dev": "webpack-dev-server --config webpack.config.js",
-    "release": "np patch"
+    "release": "np patch",
+    "build": "gulp compile",
+    "prepublishOnly": "yarn build && npm version patch"
   },
   "dependencies": {
     "@types/jest": "^26.0.7",
