@@ -9,7 +9,11 @@ import {
   onBeforeUnmount,
 } from 'vue'
 
-import { Classes, GenerateId, Styles } from 'jss'
+// import type { Styles } from '@material-ui/styles'
+
+import { Styles } from './styles'
+
+import { Classes, GenerateId } from 'jss'
 
 import { injectJssContext } from './JssContext'
 
@@ -64,7 +68,7 @@ export interface DefaultTheme {}
 // ): (data?: unknown) => Classes<C>
 
 function createUseStyles<Theme = DefaultTheme, C extends string = string>(
-  styles: Styles<C> | ((theme: Theme) => Styles<C>),
+  styles: Styles<Theme, {}, C>,
   options: CreateUseStylesOptions<Theme> = {},
 ): (data?: unknown) => ComputedRef<Classes<C>> {
   const { index = getSheetIndex(), theming, name, ...sheetOptions } = options
@@ -94,7 +98,7 @@ function createUseStyles<Theme = DefaultTheme, C extends string = string>(
       ([c, t], [pc, pt]) => {
         const sheetInstance = createStyleSheet({
           context: context.value,
-          styles: styles as any,
+          styles,
           name,
           theme: theme.value as any,
           index,
